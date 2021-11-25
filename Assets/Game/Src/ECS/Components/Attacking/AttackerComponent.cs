@@ -1,6 +1,7 @@
 using System;
 using Leopotam.EcsLite;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game.Src.ECS.Components.Shooting
 {
@@ -8,7 +9,9 @@ namespace Game.Src.ECS.Components.Shooting
     public struct AttackerComponent
     {
         public TargetType AcceptedTargets;
+        public LayerMask TargetPhysicsMask;
         public EcsPackedEntity Target;
-        public float cooldown;
+        public float DetectionRadius;
+        public Vector3 lastVisibleTargetPos;
     }
 }

@@ -7,5 +7,6 @@ namespace Game.Src.ECS.Components.Movement
     public struct SpeedComponent
     {
         public Vector3 Speed;
+        public float Magnitude;
     }
 }

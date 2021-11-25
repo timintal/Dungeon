@@ -19,7 +19,7 @@ namespace Game.Src.ECS.Helpers
             set => _component = value;
         }
 
-#if UNITY_EDITOR && !DISABLE_ECS_PREVIEW
+#if UNITY_EDITOR && ENABLE_ECS_DEBUG
         [SerializeField] [DisableIf(nameof(_setCurrentValues))] [ShowIf("@UnityEngine.Application.isPlaying")]
         private bool _syncCurrentValues;
         [SerializeField] [DisableIf(nameof(_syncCurrentValues))][ShowIf("@UnityEngine.Application.isPlaying")]
@@ -37,12 +37,12 @@ namespace Game.Src.ECS.Helpers
 
             pool.Add(entity) = _component;
             
-#if UNITY_EDITOR && !DISABLE_ECS_PREVIEW
+#if UNITY_EDITOR && ENABLE_ECS_DEBUG
             _packedEntity = world.PackEntityWithWorld(entity);
 #endif
         }
 
-#if UNITY_EDITOR && !DISABLE_ECS_PREVIEW
+#if UNITY_EDITOR && ENABLE_ECS_DEBUG
         
         private void Update()
         {

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6070635935553630831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6070635935553630830}
+  - component: {fileID: 6070635935553630828}
+  - component: {fileID: 6070635935553630829}
+  - component: {fileID: 6070635935553630819}
+  m_Layer: 0
+  m_Name: NavGridCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6070635935553630830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070635935553630831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6070635935553630828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070635935553630831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a90ba6839b5487babcdf7bfc88290e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grid: {fileID: 6070635935553630829}
+  _nodeDebugVisual: {fileID: 6070635935553630819}
+--- !u!114 &6070635935553630829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070635935553630831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566d3fc881f141f193a42d619fcee5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component:
+    GridStartPoint: {x: 0, y: 0, z: 0}
+    GridSize: {x: 250, y: 1, z: 250}
+    XMax: 0
+    YMax: 0
+    NodeSize: 2
+    showDebugInfo: 0
+  _syncCurrentValues: 0
+  _setCurrentValues: 0
+--- !u!114 &6070635935553630819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070635935553630831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294fcc04a72e4d6f94c9467c956b1606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component:
+    WalkableMaterial: {fileID: 2100000, guid: 86d0a00739d7b4bd2aea721fc62e2275, type: 2}
+    ObstacleMaterial: {fileID: 2100000, guid: 60a34a8a0fe454e5ba9de8e822508e4b, type: 2}
+    VisualizeMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  _syncCurrentValues: 0
+  _setCurrentValues: 0

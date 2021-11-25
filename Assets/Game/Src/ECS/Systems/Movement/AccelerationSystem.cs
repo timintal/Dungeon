@@ -38,6 +38,7 @@ namespace Game.Src.ECS.Systems.Movement
                     x = Deaccelearte(speed.Speed.x, acceleration.NoInputDeacceleration);
                     z = Deaccelearte(speed.Speed.z, acceleration.NoInputDeacceleration);
                     speed.Speed = new Vector3(x, speed.Speed.y, z);
+                    speed.Magnitude = speed.Speed.magnitude;
                 }
                 else
                 {
@@ -50,7 +51,10 @@ namespace Game.Src.ECS.Systems.Movement
                     if (speedMagn > acceleration.MaxSpeed)
                     {
                         speed.Speed = speed.Speed / speedMagn * acceleration.MaxSpeed;
+                        speedMagn = acceleration.MaxSpeed;
                     }
+
+                    speed.Magnitude = speedMagn;
                 }
                 
                 

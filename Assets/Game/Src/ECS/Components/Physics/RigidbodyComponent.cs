@@ -7,5 +7,8 @@ namespace Game.Src.ECS.Components.Physics
     public struct RigidbodyComponent
     {
         public Rigidbody Rigidbody;
+        public Vector3 CalculatedPosition;
+        public Quaternion CalculatedRotation;
+        public bool isStateDirty;
     }
 }

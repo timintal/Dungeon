@@ -25,7 +25,7 @@ public class BotSpawner : MonoBehaviour
             var position = transform.position;
             _container.Instantiate(_botPrefab, 
                 new Vector3(position.x + Random.Range(-_spawnArea.x, _spawnArea.x), 
-                    position.y + Random.Range(-_spawnArea.y, _spawnArea.y),
+                    0,//position.y + Random.Range(-_spawnArea.y, _spawnArea.y),
                     position.z + Random.Range(-_spawnArea.z, _spawnArea.z)), 
                 Quaternion.identity);
         }

@@ -26,6 +26,7 @@ namespace Game.Src.ECS.Helpers
         {
             if (createOnStart)
             {
+                FindComponents();
                 CreateEntity();
             }
         }
@@ -46,7 +47,7 @@ namespace Game.Src.ECS.Helpers
         }
     
         [Button]
-        void CacheComponents()
+        void FindComponents()
         {
             components = GetComponentsInChildren<EcsComponentRepresentation>().ToList();
         }
