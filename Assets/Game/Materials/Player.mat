@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Player
   m_Shader: {fileID: 4800000, guid: f6872aa2b30cb45ffbe9d940e4c4c9e6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _RECEIVE_SHADOWS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -112,6 +112,7 @@ Material:
     - _PremulAlpha: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Shadows: 0
     - _Shininess: 0
     - _Smoothness: 0
     - _SmoothnessSource: 0

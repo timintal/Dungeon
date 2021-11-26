@@ -10,6 +10,7 @@ namespace Game.Src.ECS.Components.Attacking
         public float MaxAmmo;
         public float CurrentAmmo;
         public float Cooldown;
+        public int Damage;
         public float ProjectileSpeed;
         public float Lifetime;
         public Mesh ProjectileMesh;

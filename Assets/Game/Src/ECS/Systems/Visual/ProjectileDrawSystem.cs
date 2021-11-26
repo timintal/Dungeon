@@ -16,7 +16,6 @@ namespace Game.Src.ECS.Systems.Visual
 
         public void Run(EcsSystems systems)
         {
-            int currentCunt = 0;
             foreach (var entity in _projectilesFilter)
             {
                 var projectile = _projectilesPool.Get(entity);

@@ -50,6 +50,10 @@ namespace Game.Src.ECS.Systems.Movement
                     
                     Vector3 diff =  position - _collidersCache[i].transform.position;
                     float dist = diff.magnitude;
+                    if (dist < float.Epsilon)
+                    {
+                        dist = 0.001f;
+                    }
                     float desiredDist = character.Radius + Mathf.Max(_collidersCache[i].bounds.size.x, _collidersCache[i].bounds.size.z);
                     if (dist < desiredDist)
                     {

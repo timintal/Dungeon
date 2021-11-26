@@ -9,15 +9,11 @@ namespace Game.Src.ECS.Components.Attacking
     {
         public TargetType Targets;
         public LayerMask PhysicsLayers;
+        public int Damage;
         public float Lifetime;
         public float Speed;
         public Matrix4x4 TransformationMatrix;
         public Mesh Mesh;
         public Material Material;
-    }
-
-    public struct Damagable
-    {
-        public int Damage;
     }
 }

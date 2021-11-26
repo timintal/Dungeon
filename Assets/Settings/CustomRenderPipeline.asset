@@ -16,6 +16,14 @@ MonoBehaviour:
   useSPPBatching: 1
   useDynamicBatching: 0
   shadows:
-    maxDistance: 100
+    maxDistance: 50
+    distanceFade: 0.1
     directional:
       atlasSize: 1024
+      filter: 0
+      cascadeCount: 4
+      cascadeRatio1: 0.1
+      cascadeRatio2: 0.25
+      cascadeRatio3: 0.5
+      cascadeFade: 0.12
+      cascadeBlend: 0

@@ -42,6 +42,7 @@ namespace Game.Src.ECS.Systems.Attacking
             var entity = _world.NewEntity();
             ref var projectile = ref _projectilesPool.Add(entity);
 
+            projectile.Damage = shooter.Damage;
             projectile.Lifetime = shooter.Lifetime;
             projectile.Material = shooter.ProjectileMaterial;
             projectile.Mesh = shooter.ProjectileMesh;

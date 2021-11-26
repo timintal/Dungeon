@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace Game.Src.ECS.Systems.Movement
+namespace Game.Src.ECS.Systems.Projectiles
 {
     public class ProjectileMovementSystem : IEcsRunSystem
     {
@@ -14,6 +14,7 @@ namespace Game.Src.ECS.Systems.Movement
 
 
         [EcsPool] private EcsPool<ProjectileComponent> _projectilesPool;
+        [EcsPool] private EcsPool<ProjectileHitComponent> _projectileHitPool;
 
         public void Run(EcsSystems systems)
         {
@@ -30,16 +31,13 @@ namespace Game.Src.ECS.Systems.Movement
                 }
                 else
                 {
-                    if (MoveBullet(ref projectile))
-                    {
-                        _world.DelEntity(entity);
-                    }
+                    MoveBullet(ref projectile, entity);
                 }
             }
         }
 
 
-        bool MoveBullet(ref ProjectileComponent projectile)
+        void MoveBullet(ref ProjectileComponent projectile, int entity)
         {
             Matrix4x4 transformMatrix = projectile.TransformationMatrix;
             
@@ -51,17 +49,21 @@ namespace Game.Src.ECS.Systems.Movement
             
             if (Physics.Raycast(currPos, direction, out RaycastHit hit, distance, projectile.PhysicsLayers))
             {
-                return true;
+                ref var projectileHit = ref _projectileHitPool.Add(entity);
+                projectileHit.Collider = hit.collider;
+
+            }
+            else
+            {
+                Vector3 newPos = currPos + direction * distance;
+                transformMatrix[0, 3] = newPos.x;
+                transformMatrix[1, 3] = newPos.y;
+                transformMatrix[2, 3] = newPos.z;
+
+                projectile.TransformationMatrix = transformMatrix;
             }
 
-            Vector3 newPos = currPos + direction * distance;
-            transformMatrix[0, 3] = newPos.x;
-            transformMatrix[1, 3] = newPos.y;
-            transformMatrix[2, 3] = newPos.z;
-
-            projectile.TransformationMatrix = transformMatrix;
-
-            return false;
+            
         }
     }
 }

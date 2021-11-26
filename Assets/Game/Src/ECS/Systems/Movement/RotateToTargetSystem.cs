@@ -25,7 +25,7 @@ namespace Game.Src.ECS.Systems.Movement
                 if (attacker.Target.Unpack(_world, out int targetEntity))
                 {
                     var targetRigidbody = _rigidbodyPool.Get(targetEntity);
-                    ref var myRigidbody = ref _rigidbodyPool.Get(entity);
+                    ref var myRigidbody = ref _rigidbodyPool.Get(entity); 
 
                     Quaternion desiredRotation = myRigidbody.CalculatedRotation;
                     desiredRotation.SetLookRotation(targetRigidbody.CalculatedPosition - myRigidbody.CalculatedPosition);

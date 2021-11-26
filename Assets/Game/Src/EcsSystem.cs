@@ -8,6 +8,7 @@ using Game.Src.ECS.Systems.Camera;
 using Game.Src.ECS.Systems.Input;
 using Game.Src.ECS.Systems.Movement;
 using Game.Src.ECS.Systems.Pathfinding;
+using Game.Src.ECS.Systems.Projectiles;
 using Game.Src.ECS.Systems.Visual;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
