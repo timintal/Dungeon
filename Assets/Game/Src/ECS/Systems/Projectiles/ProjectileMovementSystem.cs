@@ -51,7 +51,6 @@ namespace Game.Src.ECS.Systems.Projectiles
             {
                 ref var projectileHit = ref _projectileHitPool.Add(entity);
                 projectileHit.Collider = hit.collider;
-
             }
             else
             {

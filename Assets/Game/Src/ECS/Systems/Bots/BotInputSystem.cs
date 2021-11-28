@@ -11,10 +11,11 @@ namespace Game.Src.ECS.Systems.Bots
     {
         private EcsWorld _world;
         
-        [EcsFilter(typeof(BotTag), typeof(InputComponent), typeof(AttackerComponent), typeof(TransformComponent))]
+        [EcsFilter(typeof(BotComponent), typeof(InputComponent), typeof(AttackerComponent), typeof(TransformComponent))]
         private EcsFilter _bots;
 
         [EcsPool] private EcsPool<InputComponent> _inputPool;
+        [EcsPool] private EcsPool<BotComponent> _botPool;
         [EcsPool] private EcsPool<AttackerComponent> _attackerPool;
         [EcsPool] private EcsPool<TransformComponent> _transformPool;
 
@@ -29,13 +30,7 @@ namespace Game.Src.ECS.Systems.Bots
                 if (attacker.Target.Unpack(_world, out targetEntity) &&
                     _transformPool.Has(targetEntity))
                 {
-                    var botTransform = _transformPool.Get(entity);
-                    var targetTransform = _transformPool.Get(targetEntity);
-
-                    Vector3 diff = TransformComponent.DiffVector(targetTransform, botTransform);
-                    diff.y = 0;
-                    diff.Normalize();
-                    botInput.Direction = new Vector2(diff.x, diff.z);
+                    botInput = CalculateInputWithTarget(entity, targetEntity);
                 }
                 else
                 {
@@ -43,6 +38,34 @@ namespace Game.Src.ECS.Systems.Bots
                 }
 
             }
+        }
+
+        private InputComponent CalculateInputWithTarget(int entity, int targetEntity)
+        {
+            InputComponent botInput;
+            var bot = _botPool.Get(entity);
+            var botTransform = _transformPool.Get(entity);
+            var targetTransform = _transformPool.Get(targetEntity);
+
+            Vector3 diff = TransformComponent.DiffVector(targetTransform, botTransform);
+            diff.y = 0;
+            float diffMagnitude = diff.magnitude;
+            diff = diff / diffMagnitude;
+
+            if (diffMagnitude < bot.PreferredDistance.x)
+            {
+                botInput.Direction = new Vector2(-diff.x, -diff.z);
+            }
+            else if (diffMagnitude < bot.PreferredDistance.y)
+            {
+                botInput.Direction = Vector2.zero;
+            }
+            else
+            {
+                botInput.Direction = new Vector2(diff.x, diff.z);
+            }
+
+            return botInput;
         }
     }
 }

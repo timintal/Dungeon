@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using Game.Src.ECS.Components.Attacking;
-using Game.Src.ECS.Components.Shooting;
+using Game.Src.ECS.Helpers;
 using Game.Src.ECS.Systems.Attacking;
 using Game.Src.ECS.Systems.Bots;
 using Game.Src.ECS.Systems.Camera;
+using Game.Src.ECS.Systems.Health;
 using Game.Src.ECS.Systems.Input;
 using Game.Src.ECS.Systems.Movement;
-using Game.Src.ECS.Systems.Pathfinding;
 using Game.Src.ECS.Systems.Projectiles;
 using Game.Src.ECS.Systems.Visual;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using VContainer.Unity;
 
 public class EcsSystem : IStartable, ITickable, ILateTickable, IFixedTickable, IDisposable
@@ -40,7 +40,7 @@ public class EcsSystem : IStartable, ITickable, ILateTickable, IFixedTickable, I
         
     }
     
-    public void Start () 
+    public void Start ()
     {
         _world = new EcsWorld ();
         _eventsWorld = new EcsWorld();
@@ -53,8 +53,10 @@ public class EcsSystem : IStartable, ITickable, ILateTickable, IFixedTickable, I
             .Add (new RigidbodyResetTransformSystem()) //sets initial rigidbody positions
             .Add (new UnitsSeparationSystem())
             .Add (new CharacterMovementSystem())
+            .Add(new TargetLocatingSystem())
             .Add(new RotateToTargetSystem())
             .Add(new ProjectileMovementSystem())
+            .Add(new ProjectileCollisionHandlingSystem())
             .Add (new RigidbodySetTransformSystem()) //sets resulting calculated position to rigidbody
             .Add (new CameraSystem())
             .Inject()
@@ -68,11 +70,11 @@ public class EcsSystem : IStartable, ITickable, ILateTickable, IFixedTickable, I
             .Add (new PlayerInputSystem())
             .Add (new BotInputSystem())
             .Add (new AccelerationSystem())
-            .Add(new TargetLocatingSystem())
             .Add(new ShootingSystem())
+            .AddTimerSystems()
             .Add(new ProjectileDrawSystem())
-            .Add(new TimerSystem<ShootCooldownTimerFlag>())
-            .Add(new ProjectileDrawSystem())
+            .Add(new HealthCheckSystem())
+            .Add(new DestroyObjectSystem())
 #if UNITY_EDITOR && ENABLE_ECS_DEBUG
             .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
 #endif

@@ -1,6 +1,6 @@
 using System;
+using Game.Src.ECS.Components.Attacking;
 using Leopotam.EcsLite;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Src.ECS.Components.Shooting
@@ -10,8 +10,10 @@ namespace Game.Src.ECS.Components.Shooting
     {
         public TargetType AcceptedTargets;
         public LayerMask TargetPhysicsMask;
-        public EcsPackedEntity Target;
         public float DetectionRadius;
-        public Vector3 lastVisibleTargetPos;
+        public EcsPackedEntity Target;
+        public float CurrentTargetHoldTime;
     }
+    
+    public struct TargetCheckTimerFlag{}
 }

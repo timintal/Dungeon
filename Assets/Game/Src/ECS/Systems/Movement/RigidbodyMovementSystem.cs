@@ -10,7 +10,7 @@ namespace Game.Src.ECS.Systems.Movement
     public class RigidbodyMovementSystem : IEcsRunSystem, IEcsInitSystem
     {
         [EcsFilter(typeof(RigidbodyComponent), typeof(SpeedComponent))]
-        [EcsFilterExclude(typeof(PlayerTag))]
+        [EcsFilterExclude(typeof(PlayerComponent))]
         private EcsFilter _movableRigidbodyFilter;
 
         [EcsPool] private EcsPool<RigidbodyComponent> _rigidbodyPool;

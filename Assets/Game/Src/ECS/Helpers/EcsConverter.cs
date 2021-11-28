@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using BansheeGz.BGDatabase;
 using JetBrains.Annotations;
 using Leopotam.EcsLite;
 using Sirenix.OdinInspector;

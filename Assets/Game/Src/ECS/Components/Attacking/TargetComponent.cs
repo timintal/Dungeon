@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Src.ECS.Components.Shooting
+namespace Game.Src.ECS.Components.Attacking
 {
     [Flags]
     public enum TargetType
@@ -14,6 +14,5 @@ namespace Game.Src.ECS.Components.Shooting
     public struct TargetComponent
     {
         public TargetType Type;
-        public Collider Collider;
     }
 }

@@ -8,5 +8,6 @@ namespace Game.Src.ECS.Components.Movement
         public float MaxSpeed;
         public float Acceleration;
         public float NoInputDeacceleration;
+        public float RotationSpeed;
     }
 }

@@ -50,12 +50,12 @@ Shader "Custom/Lit"
 				float4 _DirectionalLightShadowData[MAX_DIRECTIONAL_LIGHT_COUNT];
             CBUFFER_END
             
-            #include "Surface.hlsl"
-            #include "Shadows.hlsl"
-            #include "Light.hlsl"
-            #include "BRDF.hlsl"
-            #include "GI.hlsl"
-            #include "Lighting.hlsl"
+            #include "ShaderLibrary/Surface.hlsl"
+            #include "ShaderLibrary/Shadows.hlsl"
+            #include "ShaderLibrary/Light.hlsl"
+            #include "ShaderLibrary/BRDF.hlsl"
+            #include "ShaderLibrary/GI.hlsl"
+            #include "ShaderLibrary/Lighting.hlsl"
 
             TEXTURE2D(_BaseMap);
             SAMPLER(sampler_BaseMap);

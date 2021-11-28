@@ -1,3 +1,4 @@
+using Game.Src.ECS.Components.Movement;
 using Game.Src.ECS.Components.Physics;
 using Game.Src.ECS.Components.Shooting;
 using Leopotam.EcsLite;
@@ -10,11 +11,12 @@ namespace Game.Src.ECS.Systems.Movement
     {
         private EcsWorld _world;
         
-        [EcsFilter(typeof(RigidbodyComponent), typeof(AttackerComponent))]
+        [EcsFilter(typeof(AttackerComponent), typeof(RigidbodyComponent), typeof(AccelerationComponent))]
         private EcsFilter _attackerFilter;
 
         [EcsPool] private EcsPool<AttackerComponent> _attackerPool;
         [EcsPool] private EcsPool<RigidbodyComponent> _rigidbodyPool;
+        [EcsPool] private EcsPool<AccelerationComponent> _accelerationPool;
 
         public void Run(EcsSystems systems)
         {
@@ -25,12 +27,14 @@ namespace Game.Src.ECS.Systems.Movement
                 if (attacker.Target.Unpack(_world, out int targetEntity))
                 {
                     var targetRigidbody = _rigidbodyPool.Get(targetEntity);
-                    ref var myRigidbody = ref _rigidbodyPool.Get(entity); 
+                    ref var myRigidbody = ref _rigidbodyPool.Get(entity);
+                    var acceleration = _accelerationPool.Get(entity);
 
                     Quaternion desiredRotation = myRigidbody.CalculatedRotation;
                     desiredRotation.SetLookRotation(targetRigidbody.CalculatedPosition - myRigidbody.CalculatedPosition);
                     
-                    myRigidbody.CalculatedRotation = Quaternion.Lerp(myRigidbody.CalculatedRotation, desiredRotation, 5 * Time.fixedDeltaTime);
+                    myRigidbody.CalculatedRotation = Quaternion.RotateTowards(myRigidbody.CalculatedRotation, desiredRotation,
+                        acceleration.RotationSpeed * Time.fixedDeltaTime);
                 } 
             }
         }
