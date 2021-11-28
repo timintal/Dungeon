@@ -35,6 +35,8 @@ namespace Game.Src.ECS.Systems.Attacking
                 ref var attacker = ref _attackersPool.Get(attackerEntity);
                 var attackerRigidbody = _rigidbodyPool.Get(attackerEntity);
 
+                ref var cooldownTimer = ref _targetCheckTimerPool.Add(attackerEntity);
+                cooldownTimer.TimeLeft = Random.Range(attacker.CheckForNewTargetCooldown * 0.6f, attacker.CheckForNewTargetCooldown * 1.4f);
                 FindNewTarget(ref attacker, attackerRigidbody, attackerEntity);
             }
         }
@@ -47,8 +49,6 @@ namespace Game.Src.ECS.Systems.Attacking
             float currDist = float.MaxValue;
             attacker.Target = new EcsPackedEntity();
 
-            bool found = false;
-            
             foreach (var enemyEntity in _targetsFilter)
             {
                 var target = _targetsPool.Get(enemyEntity);
@@ -59,7 +59,7 @@ namespace Game.Src.ECS.Systems.Attacking
 
                     float dist = diff.magnitude;
 
-                    if (dist < currDist)
+                    if (dist < attacker.DetectionRadius && dist < currDist)
                     {
                         Ray ray = new Ray(rigidbody.CalculatedPosition + Vector3.up, diff);
 
@@ -67,16 +67,9 @@ namespace Game.Src.ECS.Systems.Attacking
                         {
                             attacker.Target = _world.PackEntity(enemyEntity);
                             currDist = dist;
-                            found = true;
                         }
                     }
                 }
-            }
-
-            if (found)
-            {
-                ref var timer = ref _targetCheckTimerPool.Add(attackerEntity);
-                timer.TimeLeft = Random.Range(attacker.CurrentTargetHoldTime * 0.6f, attacker.CurrentTargetHoldTime * 1.4f);
             }
         }
 

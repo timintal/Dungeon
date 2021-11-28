@@ -12,7 +12,7 @@ namespace Game.Src.ECS.Components.Shooting
         public LayerMask TargetPhysicsMask;
         public float DetectionRadius;
         public EcsPackedEntity Target;
-        public float CurrentTargetHoldTime;
+        public float CheckForNewTargetCooldown;
     }
     
     public struct TargetCheckTimerFlag{}

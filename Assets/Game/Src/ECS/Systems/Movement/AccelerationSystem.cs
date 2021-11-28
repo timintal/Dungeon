@@ -35,10 +35,13 @@ namespace Game.Src.ECS.Systems.Movement
                 if (Mathf.Abs(input.Direction.x) < float.Epsilon &&
                     Mathf.Abs(input.Direction.y) < float.Epsilon)
                 {
-                    x = Deaccelearte(speed.Speed.x, acceleration.NoInputDeacceleration);
-                    z = Deaccelearte(speed.Speed.z, acceleration.NoInputDeacceleration);
-                    speed.Speed = new Vector3(x, speed.Speed.y, z);
-                    speed.Magnitude = speed.Speed.magnitude;
+                    if (speed.Magnitude > float.Epsilon)
+                    {
+                        x = Deaccelearte(speed.Speed.x, acceleration.NoInputDeacceleration);
+                        z = Deaccelearte(speed.Speed.z, acceleration.NoInputDeacceleration);
+                        speed.Speed = new Vector3(x, speed.Speed.y, z);
+                        speed.Magnitude = speed.Speed.magnitude;
+                    }
                 }
                 else
                 {

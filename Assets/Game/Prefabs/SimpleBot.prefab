@@ -440,7 +440,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 72
     DetectionRadius: 70
-    CurrentTargetHoldTime: 1
+    CheckForNewTargetCooldown: 1
   _syncCurrentValues: 0
   _setCurrentValues: 0
 --- !u!114 &1394438939888531345
