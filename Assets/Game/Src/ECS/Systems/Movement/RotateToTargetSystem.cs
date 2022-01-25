@@ -9,6 +9,7 @@ namespace Game.Src.ECS.Systems.Movement
 {
     public class RotateToTargetSystem : IEcsRunSystem
     {
+        [EcsWorld]
         private EcsWorld _world;
         
         [EcsFilter(typeof(AttackerComponent), typeof(RigidbodyComponent), typeof(AccelerationComponent))]

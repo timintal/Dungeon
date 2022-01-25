@@ -9,6 +9,7 @@ namespace Game.Src.ECS.Systems.Attacking
 {
     public class ShootingSystem : IEcsRunSystem
     {
+        [EcsWorld]
         private EcsWorld _world;
         
         [EcsFilter(typeof(ShooterComponent), typeof(AttackerComponent))]

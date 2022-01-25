@@ -9,6 +9,7 @@ namespace Game.Src.ECS.Systems.Projectiles
 {
     public class ProjectileCollisionHandlingSystem : IEcsRunSystem
     {
+        [EcsWorld]
         private EcsWorld _world;
         
         [EcsFilter(typeof(ProjectileComponent), typeof(ProjectileHitComponent))]

@@ -50,6 +50,7 @@ public class EcsSystem : IStartable, ITickable, ILateTickable, IFixedTickable, I
         
         _fixedSystems
             .AddWorld(_eventsWorld, EVENTS_WORLD)
+            .AddVehicleSystems()
             .Add (new RigidbodyResetTransformSystem()) //sets initial rigidbody positions
             .Add (new UnitsSeparationSystem())
             .Add (new CharacterMovementSystem())

@@ -7,6 +7,7 @@ namespace Game.Src.ECS.Systems.Projectiles
 {
     public class ProjectileMovementSystem : IEcsRunSystem
     {
+        [EcsWorld]
         private EcsWorld _world;
         
         [EcsFilter(typeof(ProjectileComponent))]

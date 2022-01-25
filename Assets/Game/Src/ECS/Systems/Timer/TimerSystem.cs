@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TimerSystem<ITimerFlag> : IEcsInitSystem, IEcsRunSystem where ITimerFlag: struct
 {
+    [EcsWorld]
     private EcsWorld _world;
     
     private EcsFilter _timers;

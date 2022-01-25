@@ -9,6 +9,7 @@ namespace Game.Src.ECS.Systems.Bots
 {
     public class BotInputSystem : IEcsRunSystem
     {
+        [EcsWorld]
         private EcsWorld _world;
         
         [EcsFilter(typeof(BotComponent), typeof(InputComponent), typeof(AttackerComponent), typeof(TransformComponent))]
